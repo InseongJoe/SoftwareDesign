@@ -11,6 +11,7 @@ from random import shuffle
 
 def collapse(L):
     """ Converts a list of strings to a string by concatenating all elements of the list """
+    # "".join(L) will work great
     output = ""
     for s in L:
         output = output + s
@@ -26,10 +27,8 @@ def coding_strand_to_AA(dna):
         returns: a string containing the sequence of amino acids encoded by the
                  the input DNA fragment
     """
-    
-    # YOUR IMPLEMENTATION HERE
     l = []
-    for x in range(0,len(dna)/3*3,3):
+    for x in range(0,len(dna)/3*3,3): # Why do you multiply by 3 and then divide by 3 again...
         cod = dna[x:x+3]
         l.append(get_amino_acid_for_codon(cod))
     return collapse(l)
@@ -41,9 +40,10 @@ def get_amino_acid_for_codon(c):
        
 def coding_strand_to_AA_unit_tests():
     """ Unit tests for the coding_strand_to_AA function """        
-    # YOUR IMPLEMENTATION HERE
+    
     print 'input :'+str(['ATGTGTCGTTAG']), 'expected output : MCR|', 'actual output :' + coding_strand_to_AA('ATGTGTCGTTAG')
     print 'input :'+str(['ATGCCCTGTGAATT']), 'expected output : MPCE', 'actual output :' + coding_strand_to_AA('ATGCCCTGTGAATT')
+
 def get_reverse_complement(dna):
     """ Computes the reverse complementary sequence of DNA for the specfied DNA
         sequence
@@ -51,8 +51,6 @@ def get_reverse_complement(dna):
         dna: a DNA sequence represented as a string
         returns: the reverse complementary DNA sequence represented as a string
     """
-    
-    # YOUR IMPLEMENTATION HERE
     d = list(dna)
     for i in range(0,len(d)):
         if d[i] == 'A':
@@ -70,8 +68,7 @@ def get_reverse_complement(dna):
         
 def get_reverse_complement_unit_tests():
     """ Unit tests for the get_complement function """
-        
-    # YOUR IMPLEMENTATION HERE
+
     print 'input :'+str(['ATGTGTCGTTAG']), 'expected output : CTAACGACACAT', 'actual output :' + get_reverse_complement('ATGTGTCGTTAG')
     print 'input :' + str(['ATCCGT']), 'expected output : ACGGAT', 'actual output :' + get_reverse_complement('ATCCGT')
 
@@ -83,7 +80,6 @@ def rest_of_ORF(dna):
         dna: a DNA sequence
         returns: the open reading frame represented as a string
     """
-    # YOUR IMPLEMENTATION HERE
     for i in range(0,len(dna),3):
         cod = dna[i:i+3]
         if cod == ('TAG' or 'TAA' or 'TGA'):
